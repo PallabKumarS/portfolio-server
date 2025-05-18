@@ -1,19 +1,28 @@
-import { Schema, model, Document } from "mongoose";
-import { TMessage,IMessage } from "./message.interface";
+import { model, Schema } from "mongoose";
+import { TMessage } from "./message.interface";
 
-const messageSchema = new Schema<TMessage,IMessage>(
+const messageSchema = new Schema<TMessage>(
   {
-    name: { type: String, required: true },
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    },
+    markAsRead: {
+      type: Boolean,
+      default: false,
+    },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-messageSchema.statics.isMessageExists = async function (id: string) {
-  return await MessageModel.findOne({ id });
-};
-
-const MessageModel = model<TMessage,IMessage>("Messages", messageSchema);
+const MessageModel = model<TMessage>("Message", messageSchema);
 
 export default MessageModel;

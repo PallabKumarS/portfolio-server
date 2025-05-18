@@ -1,6 +1,6 @@
 import { AppError } from "../../errors/AppError";
 import { TProject } from "./project.interface";
-import { ProjectModel } from "./project.model";
+import ProjectModel from "./project.model";
 import httpStatus from "http-status";
 
 // get all projects

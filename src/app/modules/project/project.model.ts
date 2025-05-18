@@ -38,4 +38,6 @@ const projectSchema = new Schema<TProject>(
   { timestamps: true }
 );
 
-export const ProjectModel = model<TProject>("Project", projectSchema);
+const ProjectModel = model<TProject>("Project", projectSchema);
+
+export default ProjectModel;
