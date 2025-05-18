@@ -26,30 +26,14 @@ const loginUser = async (payload: TLoginUser) => {
     throw new AppError(httpStatus.NOT_FOUND, "This user is not found !");
   }
 
-  // checking if the user is active
-  if (user.status !== "active") {
-    throw new AppError(httpStatus.FORBIDDEN, "Your account is deactivated !");
-  }
-
-  // checking if the user is already deleted
-  if (user?.isDeleted) {
-    throw new AppError(httpStatus.FORBIDDEN, "This user is deleted !");
-  }
-
   //checking if the password is correct
-  if (
-    !(await UserModel.isPasswordMatched(
-      payload?.password,
-      user?.password as string
-    ))
-  ) {
+  if (!(await bcrypt.compare(payload.password, user.password))) {
     throw new AppError(httpStatus.FORBIDDEN, "Password do not match");
   }
 
   //create token and sent to the  client
   const jwtPayload = {
     userId: user._id,
-    role: user.role,
     email: user.email,
   };
 
@@ -98,23 +82,8 @@ const changePassword = async (
     throw new AppError(httpStatus.NOT_FOUND, "This user is not found !");
   }
 
-  // checking if the user is active
-  if (user.status !== "active") {
-    throw new AppError(httpStatus.FORBIDDEN, "Your account is deactivated !");
-  }
-
-  // checking if the user is already deleted
-  if (user?.isDeleted) {
-    throw new AppError(httpStatus.FORBIDDEN, "This user is deleted !");
-  }
-
   //checking if the password is correct
-  if (
-    !(await UserModel.isPasswordMatched(
-      payload.oldPassword,
-      user?.password as string
-    ))
-  ) {
+  if (!(await bcrypt.compare(payload.oldPassword, user.password))) {
     throw new AppError(httpStatus.FORBIDDEN, "Password do not match");
   }
 
@@ -148,24 +117,14 @@ const refreshToken = async (token: string) => {
   const { userId } = decoded;
 
   // checking if the user is exist
-  const user = await UserModel.isUserExists(userId);
+  const user = await UserModel.findOne({ _id: userId });
 
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, "This user is not found !");
   }
 
-  // checking if the user is active
-  if (user.status !== "active") {
-    throw new AppError(httpStatus.FORBIDDEN, "Your account is deactivated !");
-  }
-  // checking if the user is already deleted
-  if (user?.isDeleted) {
-    throw new AppError(httpStatus.FORBIDDEN, "This user is deleted !");
-  }
-
   const jwtPayload = {
-    userId: user._id!,
-    role: user.role,
+    userId: user._id,
     email: user.email,
   };
 

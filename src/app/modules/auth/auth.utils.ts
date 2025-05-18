@@ -1,10 +1,9 @@
-import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken';
-import { Types } from 'mongoose';
+import jwt, { JwtPayload, SignOptions } from "jsonwebtoken";
 
 export const createToken = (
-  jwtPayload: { userId: Types.ObjectId; role: string; email: string },
+  jwtPayload: { userId: string; email: string },
   secret: string,
-  expiresIn: string,
+  expiresIn: string
 ) => {
   return jwt.sign(jwtPayload, secret, {
     expiresIn,
@@ -12,8 +11,8 @@ export const createToken = (
 };
 
 export const verifyToken = (token: string, secret: string) => {
-  const newToken = token.includes('Bearer')
-    ? (token.split(' ')[1] as string)
+  const newToken = token.includes("Bearer")
+    ? (token.split(" ")[1] as string)
     : (token as string);
   return jwt.verify(newToken, secret) as JwtPayload;
 };
