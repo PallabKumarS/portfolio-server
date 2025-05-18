@@ -1,19 +1,28 @@
-import { Schema, model, Document } from "mongoose";
-import { TBlog,IBlog } from "./blog.interface";
+import { model, Schema } from "mongoose";
+import { TBlog } from "./blog.interface";
 
-const blogSchema = new Schema<TBlog,IBlog>(
+const blogSchema = new Schema<TBlog>(
   {
-    name: { type: String, required: true },
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-blogSchema.statics.isBlogExists = async function (id: string) {
-  return await BlogModel.findOne({ id });
-};
-
-const BlogModel = model<TBlog,IBlog>("Blogs", blogSchema);
+const BlogModel = model<TBlog>("Blog", blogSchema);
 
 export default BlogModel;
