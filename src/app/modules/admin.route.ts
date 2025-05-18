@@ -8,10 +8,10 @@ import auth from "../middlewares/auth";
 
 const router = Router();
 
-router.use("api/users", auth(), UserRoutes);
-router.use("api/auth", auth(), AuthRoutes);
-router.use("api/projects", auth(), ProjectRoutes);
-router.use("api/blogs", auth(), BlogRoutes);
-router.use("api/messages", auth(), MessageRoutes);
+router.use("/auth", AuthRoutes);
+router.use("/users", auth(), UserRoutes);
+router.use("/projects", auth(), ProjectRoutes);
+router.use("/blogs", auth(), BlogRoutes);
+router.use("/messages", auth(), MessageRoutes);
 
 export const AdminRoutes = router;

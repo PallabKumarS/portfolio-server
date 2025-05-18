@@ -1,19 +1,41 @@
-import { Schema, model, Document } from "mongoose";
-import { TProject,IProject } from "./project.interface";
+import { model, Schema } from "mongoose";
+import { TProject } from "./project.interface";
 
-const projectSchema = new Schema<TProject,IProject>(
+const projectSchema = new Schema<TProject>(
   {
-    name: { type: String, required: true },
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    images: {
+      type: [String],
+      required: true,
+    },
+    clientRepo: {
+      type: String,
+      required: true,
+    },
+    serverRepo: {
+      type: String,
+    },
+    technology: {
+      type: [String],
+      required: true,
+    },
+    liveLink: {
+      type: String,
+      required: true,
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-projectSchema.statics.isProjectExists = async function (id: string) {
-  return await ProjectModel.findOne({ id });
-};
-
-const ProjectModel = model<TProject,IProject>("Projects", projectSchema);
-
-export default ProjectModel;
+export const ProjectModel = model<TProject>("Project", projectSchema);

@@ -1,10 +1,15 @@
-import { Model } from "mongoose";
-
 export type TProject = {
-  name: string;
-  id?: string;
+  title: string;
+  images: string[];
+  description: string;
+  technology: string[];
+  liveLink: string;
+  clientRepo?: string;
+  serverRepo?: string;
+  videoLink?: string;
+  isFeatured: boolean;
+  _id?: string;
+  __v: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
-
-export interface IProject extends Model<TProject> {
-  isProjectExists(id: string): Promise<TProject | null>;
-}
