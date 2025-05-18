@@ -4,6 +4,8 @@ import config from "./app/config";
 import globalErrorHandler from "./app/middlewares/globalErrorhandler";
 import notFound from "./app/middlewares/notFound";
 import cookieParser from "cookie-parser";
+import { PublicRoutes } from "./app/modules/public.route";
+import { AdminRoutes } from "./app/modules/admin.route";
 
 const app: Application = express();
 
@@ -20,6 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // all routes here
+app.use("/api/admin", AdminRoutes);
+app.use("/api/public", PublicRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send(`
