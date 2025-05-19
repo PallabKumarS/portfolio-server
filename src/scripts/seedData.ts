@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import mongoose from "mongoose";
 import { AboutModel } from "../app/modules/about/about.model";
 import config from "../app/config";
