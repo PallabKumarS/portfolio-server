@@ -12,7 +12,6 @@ const skillSchema = new Schema<TSkill>(
         required: true,
         enum: ["frontend", "backend", "tools"],
       },
-      icon: { type: String, required: true },
     },
   },
   {

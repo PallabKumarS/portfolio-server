@@ -11,5 +11,4 @@ export interface TSkill {
 
 export interface TSkillCategory {
   name: "frontend" | "backend" | "tools";
-  icon: string;
 }
