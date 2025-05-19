@@ -7,11 +7,9 @@ const skillSchema = new Schema<TSkill>(
     icon: { type: String, required: true },
     proficiency: { type: Number, required: true },
     category: {
-      name: {
-        type: String,
-        required: true,
-        enum: ["frontend", "backend", "tools"],
-      },
+      type: String,
+      required: true,
+      enum: ["frontend", "backend", "tools"],
     },
   },
   {
