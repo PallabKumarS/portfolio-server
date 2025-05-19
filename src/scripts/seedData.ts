@@ -82,12 +82,20 @@ const skills = [
     proficiency: 80,
   },
   { category: "backend", name: "JWT", icon: "/jwt.png", proficiency: 75 },
+  { category: "backend", name: "Prisma", icon: "SiPrisma", proficiency: 70 },
 
   // Tools & Platforms
   { category: "tools", name: "MongoDB", icon: "SiMongodb", proficiency: 85 },
   { category: "tools", name: "Firebase", icon: "SiFirebase", proficiency: 80 },
   { category: "tools", name: "Vercel", icon: "SiVercel", proficiency: 90 },
+  { category: "tools", name: "Railway", icon: "SiRailway", proficiency: 90 },
   { category: "tools", name: "GitHub", icon: "FaGithub", proficiency: 85 },
+  {
+    category: "tools",
+    name: "Postgresql",
+    icon: "BiLogoPostgresql",
+    proficiency: 60,
+  },
 ];
 
 const seedAboutData = async () => {
@@ -97,27 +105,24 @@ const seedAboutData = async () => {
     console.log("Database connection established for seeding About data");
 
     // Delete existing data
-    // await AboutModel.deleteMany({});
-    // console.log("Previous About data deleted");
+    await AboutModel.deleteMany({});
+    console.log("Previous About data deleted");
 
     // Create new seed data
 
     // Insert the seed data
-    // const result = await AboutModel.create(aboutData);
-    // console.log("About data seeded successfully:", result);
+    const aboutResult = await AboutModel.create(aboutData);
+    console.log("About data seeded successfully:", aboutResult);
 
     // Delete existing data
-    // await SkillModel.deleteMany({});
-    // console.log("Previous skill data deleted");
+    await SkillModel.deleteMany({});
+    console.log("Previous skill data deleted");
 
     // Create new seed data
 
     // Insert the seed data
-    // const result = await SkillModel.insertMany(skills);
-    // console.log("skill data seeded successfully:", result);
-
-
-
+    const skillResult = await SkillModel.insertMany(skills);
+    console.log("skill data seeded successfully:", skillResult);
 
     // Disconnect from the database
     await mongoose.disconnect();
