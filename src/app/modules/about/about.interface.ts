@@ -1,10 +1,7 @@
-import { Model } from "mongoose";
-
 export type TAbout = {
-  name: string;
-  id?: string;
+  image: string;
+  _id?: string;
+  __v?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
-
-export interface IAbout extends Model<TAbout> {
-  isAboutExists(id: string): Promise<TAbout | null>;
-}

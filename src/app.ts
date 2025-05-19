@@ -12,7 +12,7 @@ const app: Application = express();
 // parsers
 app.use(
   cors({
-    origin: [config.local_client as string, config.client as string],
+    origin: [config.local_client as string, config.client as string, config.admin_client as string],
     credentials: true,
   })
 );

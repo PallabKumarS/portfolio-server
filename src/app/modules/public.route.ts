@@ -2,6 +2,7 @@ import { Router } from "express";
 import { ProjectController } from "./project/project.controller";
 import { MessageController } from "./message/message.controller";
 import { BlogController } from "./blog/blog.controller";
+import { SkillController } from "./skill/skill.controller";
 
 const router = Router();
 
@@ -15,5 +16,8 @@ router.get("/blogs/:id", BlogController.getSingleBlog);
 
 // message routes
 router.post("/message/", MessageController.createMessage);
+
+// about routes and skill routes
+router.get("/skills/", SkillController.getAllSkill);
 
 export const PublicRoutes = router;

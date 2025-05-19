@@ -1,9 +1,9 @@
-import { Schema, model, Document } from "mongoose";
-import { TAbout,IAbout } from "./about.interface";
+import { Schema, model } from "mongoose";
+import { TAbout } from "./about.interface";
 
-const aboutSchema = new Schema<TAbout,IAbout>(
+const aboutSchema = new Schema<TAbout>(
   {
-    name: { type: String, required: true },
+    image: { type: String, required: true },
   },
   {
     timestamps: true,
@@ -14,6 +14,6 @@ aboutSchema.statics.isAboutExists = async function (id: string) {
   return await AboutModel.findOne({ id });
 };
 
-const AboutModel = model<TAbout,IAbout>("Abouts", aboutSchema);
+const AboutModel = model<TAbout>("Abouts", aboutSchema);
 
 export default AboutModel;
