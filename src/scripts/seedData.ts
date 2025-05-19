@@ -101,7 +101,9 @@ const skills = [
 const seedAboutData = async () => {
   try {
     // Connect to the database
-    await mongoose.connect(config.database_url as string);
+    await mongoose.connect(config.database_url as string, {
+      dbName: "portfolioDB",
+    });
     console.log("Database connection established for seeding About data");
 
     // Delete existing data
