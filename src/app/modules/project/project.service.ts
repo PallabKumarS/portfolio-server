@@ -5,7 +5,7 @@ import httpStatus from "http-status";
 
 // get all projects
 const getAllProjectFromDB = async () => {
-  const result = await ProjectModel.find({});
+  const result = await ProjectModel.find({}, null, { sort: { createdAt: -1 } });
   return result;
 };
 

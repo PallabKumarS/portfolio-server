@@ -6,7 +6,7 @@ import httpStatus from "http-status";
 
 // get all message
 const getAllMessageFromDB = async () => {
-  const result = await MessageModel.find({});
+  const result = await MessageModel.find({}, null, { sort: { createdAt: -1 } });
   return result;
 };
 
