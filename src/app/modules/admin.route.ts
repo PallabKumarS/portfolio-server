@@ -6,6 +6,7 @@ import { BlogRoutes } from "./blog/blog.routes";
 import { MessageRoutes } from "./message/message.routes";
 import auth from "../middlewares/auth";
 import { SkillRoutes } from "./skill/skill.routes";
+import { AboutRoutes } from "./about/about.routes";
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.use("/projects", auth(), ProjectRoutes);
 router.use("/blogs", auth(), BlogRoutes);
 router.use("/messages", auth(), MessageRoutes);
 router.use("/skills", auth(), SkillRoutes);
+router.use("/about", auth(), AboutRoutes);
 
 export const AdminRoutes = router;

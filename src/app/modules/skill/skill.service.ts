@@ -13,4 +13,16 @@ const createSkillToDB = async (payload: TSkill) => {
   return result;
 };
 
-export const SkillService = { getAllSkillFromDB, createSkillToDB };
+// update skill
+const updateSkillToDB = async (id: string, payload: Partial<TSkill>) => {
+  const result = await SkillModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+
+export const SkillService = {
+  getAllSkillFromDB,
+  createSkillToDB,
+  updateSkillToDB,
+};

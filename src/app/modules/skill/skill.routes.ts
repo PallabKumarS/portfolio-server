@@ -8,4 +8,6 @@ router.get("/", SkillController.getAllSkill);
 
 router.post("/", SkillController.createSkill);
 
+router.get("/:id", SkillController.updateSkill);
+
 export const SkillRoutes = router;

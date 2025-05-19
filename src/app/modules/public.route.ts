@@ -3,6 +3,7 @@ import { ProjectController } from "./project/project.controller";
 import { MessageController } from "./message/message.controller";
 import { BlogController } from "./blog/blog.controller";
 import { SkillController } from "./skill/skill.controller";
+import { AboutController } from "./about/about.controller";
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.post("/message/", MessageController.createMessage);
 
 // about routes and skill routes
 router.get("/skills/", SkillController.getAllSkill);
+router.get("/about/", AboutController.getAllAbout);
 
 export const PublicRoutes = router;

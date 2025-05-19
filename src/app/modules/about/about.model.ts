@@ -79,4 +79,6 @@ const aboutSchema = new Schema<TAbout>(
   }
 );
 
-export const AboutModel = model<TAbout>("About", aboutSchema);
+const AboutModel = model<TAbout>("About", aboutSchema);
+
+export default AboutModel;
