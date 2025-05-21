@@ -33,6 +33,7 @@ const updateBlogIntoDB = async (id: string, payload: Partial<TBlog>) => {
   const result = await BlogModel.findOneAndUpdate({ _id: id }, payload, {
     new: true,
   });
+
   return result;
 };
 

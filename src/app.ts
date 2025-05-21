@@ -10,13 +10,22 @@ import { AdminRoutes } from "./app/modules/admin.route";
 const app: Application = express();
 
 // parsers
+// app.use((req, res, next) => {
+//   console.log(req.path);
+//   console.log(req.headers["content-type"]);
+//   next();
+// });
+
 app.use(
   cors({
-    origin: [config.local_client as string, config.client as string, config.admin_client as string],
+    origin: [
+      config.local_client as string,
+      config.client as string,
+      config.admin_client as string,
+    ],
     credentials: true,
   })
 );
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
